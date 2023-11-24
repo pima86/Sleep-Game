@@ -51,7 +51,7 @@ public class Mob_Char : MonoBehaviour
 
             //격파 애니메이션
             parti.Play();
-            rigid.AddForce(new Vector2(9,3), ForceMode2D.Impulse);
+            rigid.AddForce(new Vector2(7,3), ForceMode2D.Impulse);
             rigid.AddTorque(30f);
             Destroy(gameObject, 1f);
         }
