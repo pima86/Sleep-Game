@@ -10,11 +10,9 @@ public class Scroller : MonoBehaviour
     [SerializeField] MeshRenderer[] m_Renderer;
     [SerializeField] float[] speed;
 
-    public bool isMove;
-
     void Update()
     {
-        if (isMove && Player_Char.Inst.anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Dash"))
+        if (Player_Char.Inst.anim.GetCurrentAnimatorStateInfo(0).IsName("Player_Dash"))
         {
             for (int i = 0; i < m_Renderer.Length; i++)
                 m_Renderer[i].material.mainTextureOffset += new Vector2(Time.deltaTime * speed[i], 0);

@@ -10,7 +10,13 @@ public class Mob_Char : MonoBehaviour
     public Animator anim;
 
     bool isDash = true;
+
+    //보스 여부
     public bool isBoss;
+    public int HP;
+    int Max_HP;
+
+    public int coin_price;
 
     void Update()
     {
@@ -29,10 +35,6 @@ public class Mob_Char : MonoBehaviour
         }
     }
 
-
-    public int HP;
-    int Max_HP;
-
     private void OnEnable()
     {
         Max_HP = HP;
@@ -43,25 +45,36 @@ public class Mob_Char : MonoBehaviour
         var bulletGo = Damage_Font.Inst.Pool.Get();
         bulletGo.transform.position = transform.position + new Vector3(0, boxcollider.size.y, 0);
 
-        if (HP - damage <= 0)
+        if (isBoss) //보스 몬스터의 경우 처리
         {
-            HP = 0;
-            GameManager.Inst.GameStart();
-            Player_Char.Inst.mob = null;
+            GameManager.Inst.damage_fill.Fill_img(HP, Max_HP);
+        }
+        else //일반 몬스터의 경우 처리
+        {
+            if (HP - damage <= 0)
+            {
+                HP = 0;
+                GameManager.Inst.wave++;
+                GameManager.Inst.GameStart();
+                Player_Char.Inst.mob = null;
 
-            //격파 애니메이션
-            parti.Play();
-            rigid.AddForce(new Vector2(7,3), ForceMode2D.Impulse);
-            rigid.AddTorque(30f);
+                //격파 애니메이션
+                parti.Play();
+                rigid.AddForce(new Vector2(7, 3), ForceMode2D.Impulse);
+                rigid.AddTorque(30f);
+            }
+            else
+            {
+                HP -= damage;
+                anim.Play("Heat", -1, 0f);
+            }
+        }
+
+        //코인 투척
+        if (HP == 0)
+        {
+            Splash_Item.Coin_Shot(transform.position, coin_price);
             Destroy(gameObject, 1f);
         }
-        else
-        {
-            HP -= damage;
-            anim.Play("Heat", -1, 0f);
-        }
-
-        if(isBoss)
-            GameManager.Inst.damage_fill.Fill_img(HP, Max_HP);
     }
 }

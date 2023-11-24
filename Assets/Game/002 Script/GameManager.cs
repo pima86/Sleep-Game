@@ -13,14 +13,11 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Damage_Fill damage_fill;
 
-    private void Start()
-    {
-        gold_tmp.text = Number_Transform.Trans_str(gold);
-        stage_tmp.text = "<size=30>Stage</size> " + stage.ToString() + " - " + wave.ToString();
-    }
-
     public void GameStart()
     {
+        Setting.Stage();
+        Setting.Gold();
+
         Player_Char.Inst.Player_Move(true);
         Mob_Create.Inst.Spawn();
     }
@@ -29,8 +26,14 @@ public class GameManager : MonoBehaviour
     [Header("스테이지")]
     public int stage; //스테이지
     public int wave; //웨이브
+
     [HideInInspector]
-    [SerializeField] TextMeshProUGUI stage_tmp;
+    public TextMeshProUGUI stage_tmp;
+    [HideInInspector]
+    public GameObject point;
+    [HideInInspector]
+    public RectTransform[] point_transform;
+
 
     [Header("능력치")]
     public int damage; //공격력
@@ -39,5 +42,6 @@ public class GameManager : MonoBehaviour
     public long gold;
 
     [HideInInspector]
-    [SerializeField] TextMeshProUGUI gold_tmp;
+    public TextMeshProUGUI gold_tmp;
+    public GameObject Money_Canvas;
 }

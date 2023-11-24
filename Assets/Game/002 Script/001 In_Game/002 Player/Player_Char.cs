@@ -26,8 +26,8 @@ public class Player_Char : MonoBehaviour
             else
             {
                 rigid.velocity = Vector3.zero;
-                //transform.position = Vector3.zero;
 
+                GameManager.Inst.Money_Canvas.SetActive(true);
                 GameManager.Inst.GameStart();
                 GameManager.Inst.isOpening = true;
             }
@@ -49,7 +49,5 @@ public class Player_Char : MonoBehaviour
     {
         anim.SetBool("isAttack", !move);
         anim.SetBool("isDash", move);
-
-        Scroller.Inst.isMove = move;
     }
 }
