@@ -7,6 +7,6 @@ Unity 3D(URP) C# UGUI
 
 # 영상
 
-🔗
+🔗 <https://www.youtube.com/watch?v=HYuR02lsbFM&list=PL6yREOYeT25ifAFM-iqYJFKzZ_AWRKNrv>
 
 ---
