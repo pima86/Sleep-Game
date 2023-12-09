@@ -27,7 +27,9 @@ public class Player_Char : MonoBehaviour
             {
                 rigid.velocity = Vector3.zero;
 
+                GameManager.Inst.Stage_Canvas.SetActive(true);
                 GameManager.Inst.Money_Canvas.SetActive(true);
+
                 GameManager.Inst.GameStart();
                 GameManager.Inst.isOpening = true;
             }

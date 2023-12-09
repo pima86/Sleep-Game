@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 697362948695872698}
   - component: {fileID: 3228718697845928617}
   - component: {fileID: 4260195258183056625}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fluttering pixie
   m_TagString: Mob
   m_Icon: {fileID: 0}
@@ -53,8 +53,8 @@ MonoBehaviour:
   boxcollider: {fileID: 3228718697845928617}
   anim: {fileID: 2207536635347915261}
   isBoss: 0
-  HP: 10
-  coin_price: 0
+  HP: 50
+  coin_price: 20
 --- !u!61 &3228718697845928617
 BoxCollider2D:
   m_ObjectHideFlags: 0

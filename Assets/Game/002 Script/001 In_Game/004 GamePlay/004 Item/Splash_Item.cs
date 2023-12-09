@@ -9,7 +9,7 @@ public class Splash_Item
         for (int i = 0; i < amount; i++)
         {
             var obj = Coin_Pool.Inst.Pool.Get().GetComponent<Coin_Obj>();
-            obj.transform.position = pos;
+            obj.transform.position = new Vector2(pos.x, 0);
             obj.price = price;
 
             float x = Random.Range(0.5f, 3f);

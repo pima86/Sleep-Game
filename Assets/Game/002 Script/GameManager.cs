@@ -13,6 +13,15 @@ public class GameManager : MonoBehaviour
     [HideInInspector]
     public Damage_Fill damage_fill;
 
+    private void Start()
+    {
+        GameManager.Inst.Stage_Canvas.SetActive(false);
+        GameManager.Inst.Money_Canvas.SetActive(false);
+
+        //나중에 세이브파일을 통해 로드할 수 있도록
+        WAVE = 1;
+    }
+
     public void GameStart()
     {
         Setting.Stage();
@@ -25,7 +34,22 @@ public class GameManager : MonoBehaviour
 
     [Header("스테이지")]
     public int stage; //스테이지
-    public int wave; //웨이브
+    public int wave {
+        set
+        {
+            if (value > 10)
+            {
+                stage++;
+                WAVE = 1;
+            }
+            else
+                WAVE = value;
+        }
+        get
+        {
+            return WAVE;
+        }
+    }int WAVE; //웨이브
 
     [HideInInspector]
     public TextMeshProUGUI stage_tmp;
@@ -43,5 +67,6 @@ public class GameManager : MonoBehaviour
 
     [HideInInspector]
     public TextMeshProUGUI gold_tmp;
+    public GameObject Stage_Canvas;
     public GameObject Money_Canvas;
 }

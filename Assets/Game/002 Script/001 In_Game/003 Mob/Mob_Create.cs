@@ -19,8 +19,16 @@ public class Mob_Create : MonoBehaviour
 
     public void Spawn()
     {
-        int max_length = Pf_Mob[GameManager.Inst.stage - 1].Length;
-        GameObject pf = Pf_Mob[GameManager.Inst.stage - 1][Random.Range(0, max_length)];
+        int stage = GameManager.Inst.stage; //현 stage 수치
+        int wave = GameManager.Inst.wave; //현 wave 수치
+
+        int max_length = Pf_Mob[stage - 1].Length; //몬스터 프리팹의 리스트 길이
+
+        GameObject pf;
+        if (wave != 10) //일반몬스터
+            pf = Pf_Mob[stage - 1][Random.Range(0, max_length - 1)];
+        else //보스몬스터
+            pf = Pf_Mob[stage - 1][max_length - 1];
 
         var obj = Instantiate(pf, transform);
     }
